@@ -21,7 +21,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Блог DevOps инженера, посвященный преимущественно работе с Kubernetes, Opesource решениям и языку програмирования Golang.
 # twitter_username: username
 github_username: zvlb
-minimal_mistakes_skin: dirt
+minimal_mistakes_skin: contrast
 search: true
 
 # Build settings
