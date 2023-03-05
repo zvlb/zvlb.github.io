@@ -16,7 +16,7 @@
 locale: "ru-RU"
 title: ZVLB
 title_separator: "|"
-subtitle: "Devops blog"
+subtitle: "Блог ДевоПса"
 email: vl.zemtsov@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Блог DevOps инженера, посвященный преимущественно работе с Kubernetes, Opesource решениям и языку програмирования Golang.
