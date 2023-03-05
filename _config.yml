@@ -59,7 +59,7 @@ plugins:
 
 author:
   name   : "Земцов Владимир"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/bio-photo.jpeg"
   bio    : "Немного работаем с различными opensource решениями"
   links:
 #     - label: "Website"
