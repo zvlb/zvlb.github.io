@@ -13,9 +13,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 locale: "ru-RU"
-title: ZVLB
+title: "Блог ДевоПса"
 title_separator: "|"
-subtitle: "Блог ДевоПса"
+subtitle: "Обо всем понемногу"
 email: vl.zemtsov@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Блог DevOps инженера, посвященный преимущественно работе с Kubernetes, Opesource решениям и языку програмирования Golang.
