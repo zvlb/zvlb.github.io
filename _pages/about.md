@@ -3,6 +3,4 @@ permalink: /about/
 title: "About"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
-
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+Я работаю в сфере системного администрирования, devops-практик и разработки уже 10 лет. За это время я накопил огромный опыт и знания, которые позволяют решать самые сложные задачи. Моя экспертиза включает в себя не только настройку и обслуживание серверов и сетей, но и программирование на различных языках, создание автоматизированных рабочих процессов, а также управление проектами и командами. Я готов поделиться своими знаниями и помочь вам решить ваши проблемы в области IT-технологий. Буду рад предложить решения для ваших конкретных задач, с котрыми вы можете столкнуться ;)
