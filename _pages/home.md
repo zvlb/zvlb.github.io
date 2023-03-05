@@ -5,7 +5,7 @@ header:
   overlay_color: "#5e616c"
   overlay_image: /assets/images/home-page-header.jpg
 excerpt: >
-  Погружаемся в дерби OpenSource решений
+  Погружаемся в дебри OpenSource решений
 feature_row:
   - image_path: /assets/images/home-kubernetes-article-topics.png
     alt: "kubernetes"
