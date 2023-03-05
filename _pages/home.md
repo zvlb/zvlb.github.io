@@ -6,7 +6,7 @@ header:
   overlay_image: /assets/images/home-page-header.jpg
 excerpt: >
   Погружаемся в дерби OpenSource решений
-article_topics:
+feature_row:
   - image_path: /assets/images/home-kubernetes-article-topics.png
     alt: "kubernetes"
     title: "Kubernetes"
@@ -30,4 +30,4 @@ article_topics:
     btn_label: "Смотреть статьи"      
 ---
 
-{% include article_topics %}
+{% include feature_row %}
