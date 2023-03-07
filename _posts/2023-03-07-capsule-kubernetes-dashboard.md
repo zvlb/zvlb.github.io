@@ -46,7 +46,7 @@ Capsule Proxy определяет доступ пользователя к name
 
 Если авторизация пользователей в кластере осуществляется через технологию OIDC (например, KeyCloak), то можно настроить Kubernetes Dashboard с авторизацией через KeyCloak и управлять зонами видимости с помощью Capsule Proxy.
 
-![proxy-kubernetes-dashboard](https://github.com/zvlb/zvlb.github.io/blob/master/_posts/assets/images/proxy-kubernetes-dashboard.png)
+![proxy-kubernetes-dashboard](https://raw.githubusercontent.com/zvlb/zvlb.github.io/master/_posts/assets/images/proxy-kubernetes-dashboard.png)
 
 ### Настройка oauth2-proxy
 
