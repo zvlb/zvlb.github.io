@@ -10,12 +10,12 @@ tags:
 ---
 
 Данная статья перевод моей же статьи, которуя я писал для Capsule, чтобы через Kubernetes Dasboard можно было взаимодействовать только с теми namespace, к которым у пользователя есть доступ, с учетом того, что доступ к cluster-scope ресурсам тоже будет, но ограничен.
-Оригинал статьи [тут](https://capsule.clastix.io/docs/guides/kubernetes-dashboard/#configuring-kubernetes-dashboard) и [тут](https://github.com/clastix/capsule/blob/master/docs/content/guides/kubernetes-dashboard.md)
+Оригинал статьи [тут](https://capsule.clastix.io/docs/guides/kubernetes-dashboard) и [тут](https://github.com/clastix/capsule/blob/master/docs/content/guides/kubernetes-dashboard.md)
 {: .notice--info}
 
 ### Немного вводных данных
 
-Если вы используется в своем кластере [Capsule](https://capsule.clastix.io) для реализации подхода Namespace As A Service (NAAS), тогда было бы неплохим решением - предоставить командам, работающим в кластере, UI, в котором можно будет увидеть только тот контент, к которым у них есть доступ, учитывая cluster-scope (например namespace, clusterrole,clusterrolebinding и т.д.). 
+Если вы используется в своем кластере [Capsule](https://capsule.clastix.io) для реализации подхода Namespace As A Service (NAAS), тогда было бы неплохим решением - предоставить командам, работающим в кластере, UI, в котором можно будет увидеть только тот контент, к которым у них есть доступ, учитывая cluster-scope ресурсы (например namespace, clusterrole, clusterrolebinding и т.д.). 
 
 По умолчанию RBAC Kubernetes не позволяет ограничивать составляющие ресурса, на который предоставлен доступ (например, get, list). Если в clusterrole указано:
 ```yaml
