@@ -8,6 +8,9 @@ tags:
   - dashboard
   - capsule
 ---
+toc: true
+toc_label: "Содержание"
+---
 
 Данная статья перевод моей же статьи, которуя я писал для Capsule, чтобы через Kubernetes Dasboard можно было взаимодействовать только с теми namespace, к которым у пользователя есть доступ, с учетом того, что доступ к cluster-scope ресурсам тоже будет, но ограничен.
 Оригинал статьи [тут](https://capsule.clastix.io/docs/guides/kubernetes-dashboard) и [тут](https://github.com/clastix/capsule/blob/master/docs/content/guides/kubernetes-dashboard.md)
