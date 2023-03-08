@@ -7,7 +7,6 @@ tags:
   - opensource
   - dashboard
   - capsule
----
 toc: true
 toc_label: "Содержание"
 ---
