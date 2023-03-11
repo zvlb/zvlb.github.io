@@ -14,7 +14,7 @@ toc_label: "Содержание"
 
 ## Что такое Ephemeral Containers?
 
-Вместе с релизом [Kubernetes v1.25](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md#ephemeral-containers-graduate-to-stable) в stable перешла одна очень значимая функциональность - Эфимерные контейнеры [****Ephemeral Containers****], которые могут помочь сильно снизить горизонт атаки для злоумышленника, и расширить возможности при анализе ошибок в pod’ах.
+Вместе с релизом [Kubernetes v1.25](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md#ephemeral-containers-graduate-to-stable) в stable перешла одна очень значимая функциональность - Эфимерные контейнеры [**Ephemeral Containers**], которые могут помочь сильно снизить горизонт атаки для злоумышленника, и расширить возможности при анализе ошибок в pod’ах.
 
 Pod - это низкоуровневая и нередактируемая сущность в Kubernetes’e. После создании pod’а вы не можете изменить/удалить/добавить контенеры внутри пода. Если же необходио что-то поменять в контейнерах - необходимо убить существующий pod и поднять новый с нужными настройками. (Именно это и происходит, когда редактируется блок containers в Deployment’e)
 
