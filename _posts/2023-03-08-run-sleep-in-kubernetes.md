@@ -25,7 +25,7 @@ kubectl run test --image=ubuntu --restart=Never sleep 100000
         - "1111111"
 ```
 
-Чаще всего Вам не нужно менять что-то в деплойменте, чтобы протестировать какой-то функционал. Чаще всего можно решить проблему с помощью [kubectl debug](https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/)
+Чаще всего Вам не нужно менять что-то в деплойменте, чтобы протестировать какой-то функционал. Чаще всего можно решить проблему с помощью [kubectl debug](https://zvlb.github.io/blog/ephemeral-containers-kubectl-debug/)
 {: .notice--warning}
 
 
