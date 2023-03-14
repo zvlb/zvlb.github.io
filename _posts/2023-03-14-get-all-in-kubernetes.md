@@ -25,9 +25,9 @@ kubectl api-resources --verbs=list --namespaced -o name  | xargs -n 1 kubectl ge
 
 ### Как работают категории ресурсов в Kubernetes
 
-Что на самом деле происходит, когда мы выполняет команду `kubectl get all`, и как Kubernetes воспринимает этот all?
+Что на самом деле происходит, когда мы выполняем команду `kubectl get all`, и как Kubernetes воспринимает этот all?
 
-В описании каждого ресурса ([Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)) в Kubernetes можно указать сцециальное поле - [categories](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#customresourcedefinition-v1-apiextensions-k8s-io). Это поле используется для объеденения разных custom resource в единую группу и иметь возможность сделать один запрос на получение ресурсов этой категории - получить все связанные ресурсы.
+В описании каждого ресурса ([Custom Resource](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)) в Kubernetes можно указать сцециальное поле - [categories](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.19/#customresourcedefinition-v1-apiextensions-k8s-io). Это поле используется для объеденения разных custom resource в единую группу. Делая запрос на получение этой группы(категории) мы получаем все ресурсы, связанные с этой категорией.
 
 На примере [Kyverno](https://kyverno.io) мы можем посмотреть, что в описании API своих ресурсов они используют category kyverno. (Например для ресурса [clusterpolicy](https://github.com/kyverno/kyverno/blob/v1.8.5/api/kyverno/v1/clusterpolicy_types.go#L16) или [updateRequest](https://github.com/kyverno/kyverno/blob/v1.8.5/api/kyverno/v1beta1/updaterequest_types.go#L54)). При генерации манифестов CRD для таких типов появится поле [category](https://github.com/kyverno/kyverno/blob/v1.8.5/config/crds/kyverno.io_clusterpolicies.yaml#L12).
 Если у нас в кластере задеплоена Kyvern’а, то мы можем посмотреть ее CRD описание и увидеть это поле:
@@ -101,7 +101,7 @@ kubectl get all
 kubectl api-resources --verbs=list --namespaced -o name 
 ```
 
-Команда `kubectl api-resources` показывает все ресурсы определенные в кластере, дефолтныйе и кастомные. Параметр `--verbs=list` указывает, что нам нужны только те ресурсы, которые можно получить с помощью запроса get через kubectl. Параметр `--namespaced` указывает, что нам нужны ресурсы уровня namespace, ну и параметр `-o name` нужен, чтобы вывести только имена ресурсов. На выходе получится что-то вроде:
+Команда `kubectl api-resources` показывает все ресурсы определенные в кластере, дефолтные и кастомные. Параметр `--verbs=list` указывает, что нам нужны только те ресурсы, которые можно получить с помощью запроса get через kubectl. Параметр `--namespaced` указывает, что нам нужны ресурсы уровня namespace, ну и параметр `-o name` нужен, чтобы вывести только имена ресурсов. На выходе получится что-то вроде:
 
 ```bash
 configmaps
@@ -125,7 +125,7 @@ statefulsets.apps
 ...
 ```
 
-Получив этот список, нам нужно запросить каждый ресурс в искомом namespace. Для удобства можно указать несоклько параметров:
+Получив этот список, нам нужно запросить каждый ресурс в искомом namespace. Для удобства можно указать несколько параметров:
 `--show-kind` - чтобы выдеть к какому kind принадлежит ресуср 
 
 `--ignore-not-found` - не выдавать ошибку, если такой ресурс не был найден в namespace
