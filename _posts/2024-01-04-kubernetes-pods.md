@@ -164,7 +164,7 @@ spec:
 
 ### Практикум
 
-Для тренировки работой с pod'ами есть небольшой [практикум](https://killercoda.com/zvlbops/course/kubernetes-deep-dive/kubernetes-pods). Welcome
+Для тренировки работы с pod'ами есть небольшой [практикум](https://killercoda.com/zvlbops/course/kubernetes-deep-dive/kubernetes-pods). Welcome
 
 ---
 На это все. Вы прекрасны :)
