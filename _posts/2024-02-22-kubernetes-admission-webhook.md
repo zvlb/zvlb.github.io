@@ -35,7 +35,7 @@ toc_label: "Содержание"
 
 ### Создаем свой Kubernetes Operator
 
-## Инициализация
+#### Инициализация
 
 Для наглядности работы с Kubernetes Webhook'ами, нам нужна площадка для тестов. Все просто - создаем тестовый оператор и работаем с ним. Для инициализации оператора я использую [Operator SDK](https://sdk.operatorframework.io/) версии v1.33.0
 
@@ -69,7 +69,7 @@ internal/controller/test_controller.go
 ...
 ```
 
-## Определение Custom Resource'а
+#### Определение Custom Resource'а
 
 В файле `api/v1alpha1/test_types.go` определилась структура, для нашего ресурса. И, так как мы не хотим сейчас описывать сложной логики, сделаем так, что в Спецификации нашего ресурса будет только одно поле - `name`, и при обработке нашего ресурса все, что будет происходить, это запись сообщения со значением поля `name` в статус нашего ресурса.
 
@@ -91,7 +91,7 @@ type TestStatus struct {
 ❯ make generate
 ```
 
-## Накидываем логику
+#### Накидываем логику
 
 При выполнении `operator-sdk create api` помимо структур для нашего CR так же сгенерировался контроллер, в котором, в методе Reconcile, описывается логика обработки ресурса.
 
@@ -127,7 +127,7 @@ func (r *TestReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.
 }
 ```
 
-## Проверяем
+#### Проверяем
 
 Для проверки, что все работает правильно, нам нужен кластер Kubernetes. Я использую минималистическую инсталяцию с помощью [kind](https://kind.sigs.k8s.io/). (Для активации Admission Webhook'ов в Kind необходимо указать определенные параметры. Конфиг для старта Kind-кластера можно посмотреть [тут](https://github.com/zvlb/webhook-operator/blob/main/hack/kind-config.yaml)))
 
@@ -272,7 +272,7 @@ webhooks:
 
 ### Настраиваем оператор для работы с Webhook'ами
 
-## Готовим код
+#### Готовим код
 
 В соответствии с [документацией](https://sdk.operatorframework.io/docs/building-operators/golang/webhook/) мы можем сгенерировать все необходимое для работы с Validation Webhook:
 
@@ -282,7 +282,7 @@ operator-sdk create webhook --group webhook --version v1alpha1 --kind Test --def
 
 Однако в таком случае созданные настройки будут заточены под работу либо с [OLM](https://olm.operatorframework.io/) либо с [Cert Manager'ом](https://cert-manager.io/). Ни тот ни другой вариант меня не устраивает по причине, которую я описал выше, по этому не будем этого делать и настроим все вручную!
 
-# Определяем валидируюшую функцию
+##### Определяем валидируюшую функцию
 
 Поскольку мы собирается валидировать структуру Test - самое очевидное - написать для этой структуры метод, который и быдет заниматься валидацией.
 
@@ -300,7 +300,7 @@ func (t *Test) Validate() error {
 }
 ```
 
-# Определим Webhook Server
+##### Определим Webhook Server
 
 Для организации Webhook для работы [Controller Runtime менеджера](https://github.com/kubernetes-sigs/controller-runtime/blob/main/pkg/manager/manager.go#L55) необходимо при описании его [опций](https://github.com/kubernetes-sigs/controller-runtime/blob/main/pkg/manager/manager.go#L95) в файле `./cmd/main.go` (переменная mgr) заполнить поле WebhookServer. А в последствии зарегистрировать этот Webhook Server:
 
@@ -365,7 +365,7 @@ func (h *Handler) Handle(ctx context.Context, req admission.Request) admission.R
 
 То есть мы инициировали структуру *Handler* у которой определем метод *Handle*, чтобы соответствовать интерфейсу *Handler* из пакета [Controller Runtime](https://github.com/kubernetes-sigs/controller-runtime). Именно этот метод будет вызываться каждый раз, когда Kubernetes API Server будет вызывать наш сервер для валидации CR'ок.
 
-# Генерируем сетрификат для Webhook Сервера
+##### Генерируем сетрификат для Webhook Сервера
 
 Все, что нам осталось - это предоставить нашему серверу сертификат и ключ для работы. Причем CA этого ключа должен быть прописан в поле `caBundle` в `ValidatingWebhookConfiguration`
 
@@ -394,13 +394,13 @@ if err = (&controller.WebhookReconciler{
 
 `installationNamespace` - в этой переменной необходимо указать namespace, в котором будет происталирован наш оператор. Это необходимо, чтобы webhook-контроллер знал с каким secret'ом он работает. Легко решается с помощью helm'a.
 
-# Проблема генерации сертификата
+##### Проблема генерации сертификата
 
 Есть одна проблема, которую необходимо решить. Когда мы стартуем наш оператор, стартует Webhook Server, который ожидает, что на пути `/tmp/k8s-webhook-server/serving-certs` будут 2 файла: `tls.crt` и `tls.key`. Однако при первом старте оператора - сертификатов не существует и этих файлов нет. Они там реально появятся, но только после того, как выполнится первый Reconcile нашего Webhook Controller'а. Однако функции Reconcile, по умолчанию, выполняются только после регистрации Webhook Server'а.
 
 Проблема решается довольно просто. Нам необходимо выполнить инициализацию сертификатов 1 раз до того, как стартанет Webhook Server. Добавляем в [`cmd/main.go`](https://github.com/zvlb/webhook-operator/blob/main/cmd/main.go#L105) логику разового Reconcile сертификатов перед регистрацией сервера!
 
-# Запускаем и тестируем оператор
+##### Запускаем и тестируем оператор
 
 Для запуска оператора необходимо следующие манифесты:
 - **CRD**. CRD нашего Test'а
@@ -454,7 +454,7 @@ Error from server: error when creating "config/samples/webhook_v1alpha1_wrong.ya
 kubectl scale deployment webhook-operator --replicas 0
 ```
 
-## Настраиваем TLS-сертификаты на локально машине
+#### Настраиваем TLS-сертификаты на локально машине
 
 Тут все просто. Когда мы запустили в Kubernetes наш оператор он уже сгенерировал необходимые сертификаты и положил их в Secret `webhook-operator-tls`. Все, что нам нужно - это достать их и положить в директорию, в которой их ждет Webhook Operator, запущенный локально:
 
@@ -464,7 +464,7 @@ kubectl get secrets webhook-operator-tls -o jsonpath='{.data.tls\.crt}' | base64
 kubectl get secrets webhook-operator-tls -o jsonpath='{.data.tls\.key}' | base64 -D > /tmp/k8s-webhook-server/serving-certs/tls.key
 ```
 
-## Настраиваем проксирование Validation-запроса от Kubernetes API
+#### Настраиваем проксирование Validation-запроса от Kubernetes API
 
 Поскольку я веду разработку в минималистической инсталяции Kubernetes - [kind](https://kind.sigs.k8s.io/), Kubernetes'у доступна моя локальная машина по IP адресу. Если вы хотите настроить подобное поведение на удаленном от вашей машины Kubernetes'e, то вам понадобится какой-то тунель до вашей рабочей станции.
 
