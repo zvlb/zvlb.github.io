@@ -13,6 +13,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 
 	corev1 "k8s.io/api/core/v1"
+	networkingv1 "k8s.io/api/networking/v1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/informers"
 	"k8s.io/client-go/tools/cache"
@@ -51,6 +52,9 @@ func main() {
 
 	// fmt.Println("Тестирование работы интерфейса Watch")
 	// testWatch(clientset)
+
+	fmt.Println("Тестирование работы интерфейса Watch c ingress'ами")
+	testWatchIngress(clientset)
 
 	// fmt.Println("Тестирование работы informer'а")
 	// testInformer(clientset)
@@ -99,6 +103,22 @@ func testWatch(client *kubernetes.Clientset) {
 	for event := range watcher.ResultChan() {
 		pod := event.Object.(*corev1.Pod)
 		fmt.Printf("Событые %v случилось с pod'ом с именем %s\n", event.Type, pod.Name)
+	}
+
+	return
+}
+
+func testWatchIngress(client *kubernetes.Clientset) {
+	// Подписаться на информацию о всех ingress'ах во всех Namespace'ах
+	watcher, err := client.NetworkingV1().Ingresses(corev1.NamespaceAll).Watch(context.Background(), v1.ListOptions{})
+	if err != nil {
+		fmt.Printf("Не подписаться на все pod'ы в кластере Ошибка: %+v\n", err)
+	}
+
+	// Вывести информацию о pod'ах и событиях связанных с ними
+	for event := range watcher.ResultChan() {
+		ing := event.Object.(*networkingv1.Ingress)
+		fmt.Printf("Namespace: %s, Ingress: %s, Event: %s\n", ing.Namespace, ing.Name, event.Type)
 	}
 
 	return
