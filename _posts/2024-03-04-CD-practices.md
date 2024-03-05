@@ -3,9 +3,9 @@ title: "Continuous Delivery. Схема релизов (Prod/Stage/Test/Dev)"
 categories:
   - blog
 tags:
-  - webhook
-  - golang
-  - go
+  - devops
+  - release
+  - cd
   - kubernetes
 toc: true
 toc_label: "Содержание"
