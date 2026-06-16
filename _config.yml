@@ -15,14 +15,25 @@
 locale: "ru-RU"
 title: "Блог ДевоПса"
 title_separator: "|"
-subtitle: "Обо всем понемногу"
+subtitle: "Kubernetes изнутри и эксплуатация под нагрузкой"
 email: vl.zemtsov@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Блог DevOps инженера, посвященный преимущественно работе с Kubernetes, Opesource решениям и языку програмирования Golang.
+  Блог Head of IT и DevOps-инженера про Kubernetes изнутри, эксплуатацию под нагрузкой, OpenSource-инфраструктуру и Golang. Реальный опыт больших кластеров, а не пересказ документации.
 # twitter_username: username
 github_username: zvlb
 minimal_mistakes_skin: contrast
 search: true
+
+# SEO / Open Graph (нативный механизм Minimal Mistakes)
+name: "Владимир Земцов"
+og_image: "/assets/images/home-page-header.jpg"
+social:
+  type: Person
+  name: "Владимир Земцов"
+  links:
+    - "https://t.me/zvlbtech"
+    - "https://github.com/zvlb"
+    - "https://www.linkedin.com/in/vladimir-zemtsov-b63620b9/"
 
 # Build settings
 markdown: kramdown
@@ -60,7 +71,7 @@ plugins:
 author:
   name   : "Земцов Владимир"
   avatar : "/assets/images/bio-photo.jpeg"
-  bio    : "Активно работаем с различными opensource решениями"
+  bio    : "Head of IT · Kubernetes на bare-metal под нагрузкой · CKA · контрибьютор OpenSource"
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
@@ -70,7 +81,7 @@ author:
       url: "https://www.linkedin.com/in/vladimir-zemtsov-b63620b9/"
     - label: "Telegram"
       icon: "fab fa-fw fa-telegram"
-      url: "https://t.me/zvlb_ops"
+      url: "https://t.me/zvlbtech"
 
 footer:
   links:
@@ -82,7 +93,7 @@ footer:
       url: "https://www.linkedin.com/in/vladimir-zemtsov-b63620b9/"
     - label: "Telegram"
       icon: "fab fa-fw fa-telegram"
-      url: "https://t.me/zvlb_ops"
+      url: "https://t.me/zvlbtech"
 
 defaults:
   # _posts
